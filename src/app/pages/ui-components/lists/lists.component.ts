@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { Character } from 'src/app/models/rickAndMorty.model';
-import { CharacterState } from 'src/app/store/rickAndMorty/rickAndMorty.state';
+import { CharacterState } from 'src/app/store/states/rickAndMorty.state';
 
 @Component({
   selector: 'app-lists',

@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable, Subscription } from 'rxjs';
 import { Character } from 'src/app/models/rickAndMorty.model';
-import { CharacterState } from 'src/app/store/rickAndMorty/rickAndMorty.state';
+import { CharacterState } from 'src/app/store/states/rickAndMorty.state';
 import {
   AddToFavorites,
   AddToSelected,
@@ -10,7 +10,7 @@ import {
   LoadCharacters,
   RemoveFromFavorites,
   RemoveFromSelected,
-} from '../../../store/rickAndMorty/rickAndMorty.actions';
+} from '../../../store/actions/rickAndMorty.actions';
 
 @Component({
   selector: 'app-badge',
