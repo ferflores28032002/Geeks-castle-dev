@@ -67,6 +67,13 @@ export class AppBadgeComponent implements OnInit, OnDestroy {
     );
     return !!favoriteCharacter?.isFavorite;
   }
+
+  isSelected(characterId: number): boolean {
+    const selectedCharacters = this.store.selectSnapshot(
+      CharacterState.selected
+    );
+    return selectedCharacters.some((character) => character.id === characterId);
+  }
   selectCharacter(characterId: number) {
     this.store.dispatch(new AddToSelected(characterId));
   }

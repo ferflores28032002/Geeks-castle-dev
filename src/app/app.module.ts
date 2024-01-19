@@ -28,7 +28,6 @@ import { AppNavItemComponent } from './layouts/full/sidebar/nav-item/nav-item.co
 import { SidebarComponent } from './layouts/full/sidebar/sidebar.component';
 import { CharacterState } from './store/rickAndMorty/rickAndMorty.state';
 
-// store
 
 @NgModule({
   declarations: [

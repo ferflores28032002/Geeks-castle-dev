@@ -1,10 +1,6 @@
-<div *ngIf="isLoading; else content">
-  <!-- Muestra el loading spinner aquí -->
-  Cargando datos...
-</div>
+<div *ngIf="isLoading; else content">Cargando datos...</div>
 
 <ng-template #content>
-  <!-- Usando ng-container para obtener la longitud de selected$ -->
   <ng-container *ngIf="selected$ | async as selectedCharacters">
     <button [disabled]="selectedCharacters.length === 0">
       {{ selectedCharacters.length }} elementos seleccionados
@@ -19,25 +15,58 @@
   </ng-container>
 
   <div
-    class="card-container"
     infinite-scroll
     [infiniteScrollDistance]="0.5"
     [infiniteScrollUpDistance]="2"
     [infiniteScrollThrottle]="300"
     (scrolled)="onScroll()"
   >
-    <div
+    <mat-card
+      class="cardWithShadow theme-card"
+      [class.selected]="isSelected(character.id)"
       *ngFor="let character of characters$ | async"
-      class="card"
       (click)="selectCharacter(character.id)"
     >
-      <img [src]="character.image" alt="{{ character.name }}" />
-      <p>{{ character.name }}</p>
-      <button (click)="toggleFavorite(character.id)" class="card-button">
-        Toggle Favorite
-      </button>
-      <p *ngIf="isFavorite(character.id)" class="favorite">Es favorito</p>
-      <p *ngIf="!isFavorite(character.id)">No es favorito</p>
-    </div>
+      <mat-card-content>
+        <mat-card-header class="title-container">
+          <div>
+            <mat-icon
+              class="mat-icon-rtl-mirror"
+              (click)="toggleFavorite(character.id)"
+            >
+              <span *ngIf="isFavorite(character.id)" class="favorite-icon"
+                >favorite</span
+              >
+              <span *ngIf="!isFavorite(character.id)" class="not-favorite-icon"
+                >favorite_border</span
+              >
+            </mat-icon>
+          </div>
+        </mat-card-header>
+
+        <div class="info-character">
+          <img [src]="character.image" alt="{{ character.name }}" />
+
+          <div class="box-character">
+            <p class="box-character-name">{{ character.name }}</p>
+            <div class="box-character-descriptions">
+              <div>
+                <span class="highlight">Status:</span> {{ character.status }}
+              </div>
+              <div>
+                <span class="highlight">Location:</span>
+                {{ character.location.name }}
+              </div>
+              <div>
+                <span class="highlight">Species:</span> {{ character.species }}
+              </div>
+              <div>
+                <span class="highlight">Gender:</span> {{ character.gender }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
   </div>
 </ng-template>

@@ -1,0 +1,109 @@
+mat-card.theme-card {
+  border: 2px solid transparent; 
+
+}
+mat-card.selected {
+  border: 2px solid $light-primary;
+}
+.info-character {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    margin-top: -30px;
+  
+    img {
+      width: 8rem;
+      height: 8rem;
+      border-radius: 1rem;
+    }
+    
+  
+    .box-character {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+  
+      .box-character-name {
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+  
+      .box-character-descriptions {
+        column-count: 2;
+        margin-top: 30px;
+        width: 40%;
+  
+        div {
+          overflow: hidden;
+          margin-bottom: 1rem;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+  
+        .highlight {
+          font-weight: bold;
+          color: $light-primary; // Ajusta según tus preferencias
+        }
+      }
+    }
+  
+    @media (max-width: 768px) {
+      gap: 0px;
+      margin-top: 0px;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+  
+      img {
+        width: 10rem;
+        height: 10rem;
+        margin-bottom: 20px;
+      }
+  
+      .box-character {
+        flex-direction: column;
+        align-items: center;
+  
+        .box-character-descriptions {
+          width: 100%;
+          column-count: 1;
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+  
+  .title-container {
+    display: flex;
+    padding: 0;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    
+    @media (max-width: 768px) {
+      justify-content: flex-end;
+    }
+  }
+  
+  .favorite-icon,
+  .not-favorite-icon {
+    color: gray;
+    position: relative;
+  
+    @media (max-width: 768px) {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+    }
+  }
+  
+  .favorite-icon {
+    color: crimson;
+  }
+  
+  .theme-card {
+    cursor: pointer;
+    position: relative;
+  }
+  

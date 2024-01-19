@@ -1,4 +1,3 @@
-// rickAndMorty.actions.ts
 export class LoadCharacters {
   static readonly type = '[Character] Load';
   constructor(public page: number) {}
