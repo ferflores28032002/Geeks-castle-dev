@@ -2,9 +2,22 @@
   <h6 *ngIf="favoriteharacters.length === 0">No hay personajes favoritos</h6>
 </div>
 
-<div class="favorite-section">
-  <div *ngFor="let favorite of favorites$ | async" class="card">
-    <img [src]="favorite.image" alt="{{ favorite.name }}" />
-    <p>{{ favorite.name }}</p>
+<div class="selected-section">
+  <div class="card-grid" *ngFor="let favorite of favorites$ | async">
+    <mat-card class="card">
+      <div r>
+        <img
+          [src]="favorite.image"
+          alt="{{ favorite.name }}"
+          class="w-100"
+          mat-card-image
+        />
+      </div>
+      <mat-card-content class="p-b-24 p-t-12 position-relative">
+        <mat-card-title class="mat-headline-2 f-s-16 m-b-4 property">{{
+          favorite.name
+        }}</mat-card-title>
+      </mat-card-content>
+    </mat-card>
   </div>
 </div>

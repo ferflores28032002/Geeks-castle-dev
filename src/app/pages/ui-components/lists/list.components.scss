@@ -1,0 +1,37 @@
+.selected-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  
+  .card {
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  
+    &:hover {
+      transform: scale(1.05);
+    }
+  
+    .property {
+      margin-bottom: 0.5rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  
+    img {
+      object-fit: cover;
+      height: 200px; /* Ajusta la altura de la imagen según tus preferencias */
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .selected-section {
+      grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+    }
+  }
+
+  
+  

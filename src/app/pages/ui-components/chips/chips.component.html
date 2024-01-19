@@ -7,22 +7,22 @@
 <div class="selected-section">
   <div class="card-grid" *ngFor="let selectedCharacter of selected$ | async">
     <mat-card class="card">
-      <a routerLink="/widgets/cards">
+      <div r>
         <img
           [src]="selectedCharacter.image"
           alt="{{ selectedCharacter.name }}"
           class="w-100"
           mat-card-image
         />
-      </a>
+      </div>
       <mat-card-content class="p-b-24 p-t-12 position-relative">
         <button
           mat-mini-fab
           color="primary"
           class="icon-30 cart-btn"
-          matTooltip="Add to Cart"
+          matTooltip="{{ selectedCharacter.name }}"
         >
-          <i-tabler name="basket" class="icon-16"></i-tabler>
+          {{ selectedCharacter.id }}
         </button>
         <mat-card-title class="mat-headline-2 f-s-16 m-b-4">{{
           selectedCharacter.name
