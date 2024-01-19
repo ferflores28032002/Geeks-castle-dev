@@ -1,57 +1,43 @@
-<mat-card class="cardWithShadow theme-card">
-  <mat-card-header>
-    <mat-card-title class="m-b-0">Badges</mat-card-title>
-  </mat-card-header>
-  <mat-card-content class="b-t-1">
-    <mat-card class="b-1 shadow-none">
-      <mat-card-content>
-        <p>
-          <span matBadge="4" matBadgeOverlap="false" class="f-w-500 text-muted">Text with a badge</span>
-        </p>
-      </mat-card-content>
-    </mat-card>
+<div *ngIf="isLoading; else content">
+  <!-- Muestra el loading spinner aquí -->
+  Cargando datos...
+</div>
 
-    <mat-card class="b-1 shadow-none">
-      <mat-card-content>
-        <p>
-          <span matBadge="4" matBadgeOverlap="false" matBadgeSize="large" class="f-w-500 text-muted">Text with large
-            badge</span>
-        </p>
-      </mat-card-content>
-    </mat-card>
+<ng-template #content>
+  <!-- Usando ng-container para obtener la longitud de selected$ -->
+  <ng-container *ngIf="selected$ | async as selectedCharacters">
+    <button [disabled]="selectedCharacters.length === 0">
+      {{ selectedCharacters.length }} elementos seleccionados
+    </button>
+    <button
+      [disabled]="selectedCharacters.length === 0"
+      class="m-4"
+      (click)="clearSelected()"
+    >
+      Resetear
+    </button>
+  </ng-container>
 
-    <mat-card class="b-1 shadow-none">
-      <mat-card-content>
-        <p class="f-w-500 text-muted">
-          Button with a badge on the left
-          <button mat-flat-button color="primary" matBadge="8" matBadgePosition="before" matBadgeColor="accent">
-            Action
-          </button>
-        </p>
-      </mat-card-content>
-    </mat-card>
-
-    <mat-card class="b-1 shadow-none">
-      <mat-card-content>
-        <p class="f-w-500 text-muted">
-          Icon with a badge
-          <mat-icon matBadge="15" matBadgeColor="warn">home</mat-icon>
-        </p>
-      </mat-card-content>
-    </mat-card>
-
-    <mat-card class="b-1 shadow-none">
-      <mat-card-content>
-        <p>
-          Button toggles badge visibility
-          <button mat-flat-button color="primary" matBadge="7" [matBadgeHidden]="hidden" (click)="toggleBadgeVisibility()">
-            Hide
-          </button>
-        </p>
-      </mat-card-content>
-    </mat-card>
-
-
-
-  </mat-card-content>
-</mat-card>
+  <div
+    class="card-container"
+    infinite-scroll
+    [infiniteScrollDistance]="0.5"
+    [infiniteScrollUpDistance]="2"
+    [infiniteScrollThrottle]="300"
+    (scrolled)="onScroll()"
+  >
+    <div
+      *ngFor="let character of characters$ | async"
+      class="card"
+      (click)="selectCharacter(character.id)"
+    >
+      <img [src]="character.image" alt="{{ character.name }}" />
+      <p>{{ character.name }}</p>
+      <button (click)="toggleFavorite(character.id)" class="card-button">
+        Toggle Favorite
+      </button>
+      <p *ngIf="isFavorite(character.id)" class="favorite">Es favorito</p>
+      <p *ngIf="!isFavorite(character.id)">No es favorito</p>
+    </div>
+  </div>
+</ng-template>

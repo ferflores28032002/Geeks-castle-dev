@@ -10,6 +10,8 @@ import { AppComponent } from './app.component';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import * as TablerIcons from 'angular-tabler-icons/icons';
 
+import { NgxsModule } from '@ngxs/store';
+
 //Import all material modules
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgScrollbarModule } from 'ngx-scrollbar';
@@ -24,6 +26,9 @@ import { HeaderComponent } from './layouts/full/header/header.component';
 import { BrandingComponent } from './layouts/full/sidebar/branding.component';
 import { AppNavItemComponent } from './layouts/full/sidebar/nav-item/nav-item.component';
 import { SidebarComponent } from './layouts/full/sidebar/sidebar.component';
+import { CharacterState } from './store/rickAndMorty/rickAndMorty.state';
+
+// store
 
 @NgModule({
   declarations: [
@@ -45,6 +50,7 @@ import { SidebarComponent } from './layouts/full/sidebar/sidebar.component';
     MaterialModule,
     TablerIconsModule.pick(TablerIcons),
     NgScrollbarModule,
+    NgxsModule.forRoot([CharacterState]),
   ],
   exports: [TablerIconsModule],
   bootstrap: [AppComponent],

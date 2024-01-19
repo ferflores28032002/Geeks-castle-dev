@@ -1,21 +1,9 @@
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component } from '@angular/core';
-import { MatChipEditedEvent, MatChipInputEvent } from '@angular/material/chips';
-import {ThemePalette} from '@angular/material/core';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-
-export interface ChipColor {
-  name: string;
-  color: ThemePalette;
-}
-
-export interface Fruit {
-  name: string;
-}
-
-export interface Vegetable {
-  name: string;
-}
+import { Select, Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
+import { Character } from 'src/app/models/rickAndMorty.model';
+import { RemoveFromSelected } from 'src/app/store/rickAndMorty/rickAndMorty.actions';
+import { CharacterState } from 'src/app/store/rickAndMorty/rickAndMorty.state';
 
 @Component({
   selector: 'app-chips',
@@ -23,77 +11,11 @@ export interface Vegetable {
   styleUrls: ['./chips.component.scss'],
 })
 export class AppChipsComponent {
-  // drag n drop
-  vegetables: Vegetable[] = [
-    { name: 'apple' },
-    { name: 'banana' },
-    { name: 'strawberry' },
-    { name: 'orange' },
-    { name: 'kiwi' },
-    { name: 'cherry' },
-  ];
+  @Select(CharacterState.selected) selected$!: Observable<Character[]>;
 
-    // 
-    // Stacked
-    // 
-    availableColors: ChipColor[] = [
-      {name: 'Primary', color: 'primary'},
-      {name: 'Accent', color: 'accent'},
-      {name: 'Warn', color: 'warn'},
-    ];
+  constructor(private store: Store) {}
 
-
-  drop(event: Event) {
-    if (isDragDrop(event)) {
-      moveItemInArray(this.vegetables, event.previousIndex, event.currentIndex);
-    }
+  deselectCharacter(characterId: number) {
+    this.store.dispatch(new RemoveFromSelected(characterId));
   }
-
-  // 
-  //  chips with input
-  // 
-  addOnBlur = true;
-  readonly separatorKeysCodes = [ENTER, COMMA] as const;
-  fruits: Fruit[] = [{ name: 'Lemon' }, { name: 'Lime' }, { name: 'Apple' }];
-
-  add(event: MatChipInputEvent): void {
-    const value = (event.value || '').trim();
-
-    // Add our fruit
-    if (value) {
-      this.fruits.push({ name: value });
-    }
-
-    // Clear the input value
-    event.chipInput!.clear();
-  }
-
-  remove(fruit: Fruit): void {
-    const index = this.fruits.indexOf(fruit);
-
-    if (index >= 0) {
-      this.fruits.splice(index, 1);
-    }
-  }
-
-  edit(fruit: Fruit, event: MatChipEditedEvent) {
-    const value = event.value.trim();
-
-    // Remove fruit if it no longer has a name
-    if (!value) {
-      this.remove(fruit);
-      return;
-    }
-
-    // Edit existing fruit
-    const index = this.fruits.indexOf(fruit);
-    if (index >= 0) {
-      this.fruits[index].name = value;
-    }
-
-  
-  }
-}
-function isDragDrop(object: any): object is CdkDragDrop<string[]> {
-  return 'previousIndex' in object;
 }
