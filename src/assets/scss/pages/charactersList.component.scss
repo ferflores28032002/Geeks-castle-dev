@@ -137,4 +137,12 @@ mat-card.selected {
     cursor: pointer;
     position: relative;
   }
+
+  .button-onNextPage {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    align-self: flex-end;
+  }
   

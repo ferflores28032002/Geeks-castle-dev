@@ -25,3 +25,9 @@ export const navItems: NavItem[] = [
     route: '/characters/favorites',
   },
 ];
+
+export const navItemLogout = {
+  displayName: 'Logout',
+  iconName: 'logout',
+  route: '/login',
+};

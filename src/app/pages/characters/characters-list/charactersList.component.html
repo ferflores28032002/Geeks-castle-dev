@@ -93,6 +93,16 @@
       </div>
     </mat-card-content>
   </mat-card>
-
-  <button (click)="onNextPage()">Ver más</button>
+  <div class="button-onNextPage">
+    <div></div>
+    <button
+      [disabled]="isLoading"
+      (click)="onNextPage()"
+      mat-flat-button
+      color="primary"
+      class="d-flex justify-content-center"
+    >
+      Ver más
+    </button>
+  </div>
 </ng-template>

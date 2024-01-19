@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavService } from '../../../services/nav.service';
-import { navItems } from './sidebar-data';
+
+import { navItemLogout, navItems } from './sidebar-data';
 
 @Component({
   selector: 'app-sidebar',
@@ -8,6 +9,7 @@ import { navItems } from './sidebar-data';
 })
 export class SidebarComponent implements OnInit {
   navItems = navItems;
+  navItemLogout = navItemLogout;
 
   constructor(public navService: NavService) {}
 

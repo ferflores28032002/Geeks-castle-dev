@@ -93,3 +93,17 @@
     }
   }
 }
+
+.image-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-container img {
+  width:10rem;
+  height: 10rem;
+}
+
