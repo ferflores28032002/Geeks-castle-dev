@@ -35,13 +35,14 @@
 
   <ng-container *ngIf="selected$ | async as selectedCharacters">
     <div style="margin-bottom: 1rem">
-      <button
+      <a
+        routerLink="/characters/selected"
         [disabled]="selectedCharacters.length === 0"
         mat-flat-button
         color="primary"
       >
         ({{ selectedCharacters.length }}) see details
-      </button>
+      </a>
       <button
         mat-flat-button
         color="primary"

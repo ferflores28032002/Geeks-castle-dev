@@ -10,6 +10,7 @@ import { Character } from 'src/app/models/rickAndMorty.model';
 import { CharacterState } from 'src/app/store/states/rickAndMorty.state';
 
 // Importaciones de acciones
+import { ConfetiService } from 'src/app/services/confeti.service';
 import {
   AddToFavorites,
   AddToSelected,
@@ -33,7 +34,7 @@ export class AppCharactersListComponent implements OnInit {
   isLoading: boolean = true;
 
   // Constructor
-  constructor(private store: Store) {}
+  constructor(private store: Store, private confetiService: ConfetiService) {}
 
   // Método de inicialización
   ngOnInit() {
@@ -72,6 +73,7 @@ export class AppCharactersListComponent implements OnInit {
       this.store.dispatch(new RemoveFromFavorites(characterId));
     } else {
       this.store.dispatch(new AddToFavorites(characterId));
+      this.confetiService.lanzarConfeti();
     }
   }
 
