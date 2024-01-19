@@ -1,18 +1,55 @@
 <div *ngIf="selected$ | async as selectedCharacters">
-  <h6 *ngIf="selectedCharacters.length === 0">
+  <h3 *ngIf="selectedCharacters.length === 0">
     No se ha seleccionado ningún personaje
-  </h6>
+  </h3>
 </div>
 
 <div class="selected-section">
-  <div *ngFor="let selectedCharacter of selected$ | async" class="card">
-    <img [src]="selectedCharacter.image" alt="{{ selectedCharacter.name }}" />
-    <p>{{ selectedCharacter.name }}</p>
-    <button
-      (click)="deselectCharacter(selectedCharacter.id)"
-      class="card-button"
-    >
-      Remover Selección
-    </button>
+  <div class="card-grid" *ngFor="let selectedCharacter of selected$ | async">
+    <mat-card class="card">
+      <a routerLink="/widgets/cards">
+        <img
+          [src]="selectedCharacter.image"
+          alt="{{ selectedCharacter.name }}"
+          class="w-100"
+          mat-card-image
+        />
+      </a>
+      <mat-card-content class="p-b-24 p-t-12 position-relative">
+        <button
+          mat-mini-fab
+          color="primary"
+          class="icon-30 cart-btn"
+          matTooltip="Add to Cart"
+        >
+          <i-tabler name="basket" class="icon-16"></i-tabler>
+        </button>
+        <mat-card-title class="mat-headline-2 f-s-16 m-b-4">{{
+          selectedCharacter.name
+        }}</mat-card-title>
+        <div>
+          <div class="property">
+            <strong>Status:</strong>
+            {{ selectedCharacter.status }}
+          </div>
+          <div class="property">
+            <strong>Species:</strong>
+            {{ selectedCharacter.species }}
+          </div>
+          <div class="property">
+            <strong>Gender:</strong>
+            {{ selectedCharacter.gender }}
+          </div>
+          <div class="property">
+            <strong>Origin:</strong>
+            {{ selectedCharacter.origin.name }}
+          </div>
+          <div class="property">
+            <strong>Location:</strong>
+            {{ selectedCharacter.location.name }}
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
   </div>
 </div>

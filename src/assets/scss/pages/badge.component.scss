@@ -2,9 +2,40 @@ mat-card.theme-card {
   border: 2px solid transparent; 
 
 }
+
+
 mat-card.selected {
   border: 2px solid $light-primary;
 }
+
+
+/* styles.css */
+
+.container {
+  margin: 20px;
+}
+
+.search-input,
+.select-input,
+.filter-input {
+  margin-right: 10px;
+  flex: 1;
+}
+
+/* styles.css */
+
+.container {
+  margin: 20px;
+}
+
+.search-input,
+.select-input,
+.filter-input {
+  margin-right: 10px;
+  flex: 1;
+}
+
+
 .info-character {
     display: flex;
     gap: 30px;

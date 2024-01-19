@@ -1,6 +1,38 @@
 <div *ngIf="isLoading; else content">Cargando datos...</div>
 
 <ng-template #content>
+  <!-- app.component.html -->
+
+  <div
+    fxLayout="row"
+    fxLayout.gt-sm="column"
+    fxLayoutAlign="center center"
+    class="container"
+  >
+    <!-- Search Input -->
+    <mat-form-field appearance="fill" class="search-input">
+      <mat-icon matPrefix>search</mat-icon>
+      <input matInput placeholder="Buscar" />
+    </mat-form-field>
+
+    <!-- Select Input -->
+    <mat-form-field appearance="fill" class="select-input">
+      <mat-icon matPrefix>category</mat-icon>
+      <mat-select placeholder="Seleccionar">
+        <mat-option value="opcion1">Opción 1</mat-option>
+        <mat-option value="opcion2">Opción 2</mat-option>
+        <mat-option value="opcion3">Opción 3</mat-option>
+        <mat-option value="opcion4">Opción 4</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Filter Input -->
+    <mat-form-field appearance="fill" class="filter-input">
+      <mat-icon matPrefix>filter_list</mat-icon>
+      <input matInput placeholder="Filtrar" />
+    </mat-form-field>
+  </div>
+
   <ng-container *ngIf="selected$ | async as selectedCharacters">
     <button [disabled]="selectedCharacters.length === 0">
       {{ selectedCharacters.length }} elementos seleccionados
