@@ -163,15 +163,20 @@ export class CharacterState implements NgxsOnInit {
     this.saveToLocalStorage(getState());
   }
 
-  // Acción para agregar a seleccionados
   @Action(AddToSelected)
   addToSelected(
     { getState, patchState }: StateContext<CharacterStateModel>,
     { characterId }: AddToSelected
   ) {
     const state = getState();
-    // Verificar límite de 3 personajes seleccionados
-    if (!state.selected.includes(characterId)) {
+
+    // Verificar si el personaje ya está seleccionado
+    if (state.selected.includes(characterId)) {
+      // Eliminar el personaje de la lista si ya está seleccionado
+      const updatedSelected = state.selected.filter((id) => id !== characterId);
+      patchState({ selected: updatedSelected });
+    } else {
+      // Verificar límite de 3 personajes seleccionados
       if (state.selected.length >= 3) {
         // Mostrar alerta si se supera el límite
         this.dialog.open(AlertDialogComponent, {
@@ -179,14 +184,14 @@ export class CharacterState implements NgxsOnInit {
         });
         return;
       }
-      // Actualizar el estado agregando el nuevo personaje seleccionado
+      // Agregar el nuevo personaje seleccionado
       patchState({
         selected: [...state.selected, characterId],
       });
-
-      // Guardar cambios en el localStorage
-      this.saveToLocalStorage(getState());
     }
+
+    // Guardar cambios en el localStorage
+    this.saveToLocalStorage(getState());
   }
 
   // Acción para quitar de seleccionados

@@ -2,7 +2,11 @@
   <app-branding></app-branding>
   <ng-scrollbar class="position-relative" style="height: 70vh">
     <mat-nav-list class="sidebar-list">
-      <app-nav-item *ngFor="let item of navItems" [item]="item"></app-nav-item>
+      <app-nav-item
+        *ngFor="let item of navItems"
+        [item]="item"
+        (click)="isMobile() && toggleMobileNav.emit()"
+      ></app-nav-item>
     </mat-nav-list>
   </ng-scrollbar>
 
