@@ -8,22 +8,21 @@ import { MaterialModule } from '../../material.module';
 import { TablerIconsModule } from 'angular-tabler-icons';
 import * as TablerIcons from 'angular-tabler-icons/icons';
 
-import { UiComponentsRoutes } from './ui-components.routing';
-
-// ui components
 import { MatNativeDateModule } from '@angular/material/core';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import { AppBadgeComponent } from './badge/badge.component';
-import { AppChipsComponent } from './chips/chips.component';
-import { AppListsComponent } from './lists/lists.component';
-import { AppMenuComponent } from './menu/menu.component';
-import { AppTooltipsComponent } from './tooltips/tooltips.component';
+
+import { charactersRoutes } from './characters.routing';
+
+import { AppCharactersFavoritesComponent } from './characters-favorites/charactersFavorites.component';
+import { AppCharactersListComponent } from './characters-list/charactersList.component';
+import { AppcharactersSelectedComponent } from './characters-selected/charactersSelected.component';
+
 import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild(UiComponentsRoutes),
+    RouterModule.forChild(charactersRoutes),
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
@@ -32,12 +31,10 @@ import { AlertDialogComponent } from './alert-dialog/alert-dialog.component';
     InfiniteScrollModule,
   ],
   declarations: [
-    AppBadgeComponent,
-    AppChipsComponent,
-    AppListsComponent,
-    AppMenuComponent,
-    AppTooltipsComponent,
+    AppCharactersListComponent,
+    AppCharactersFavoritesComponent,
+    AppcharactersSelectedComponent,
     AlertDialogComponent,
   ],
 })
-export class UicomponentsModule {}
+export class charactersModule {}

@@ -1,8 +1,8 @@
 import { TablerIconsModule } from 'angular-tabler-icons';
-import { ChartComponent, NgApexchartsModule } from 'ng-apexcharts';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 import { CommonModule } from '@angular/common';
-import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -26,7 +26,5 @@ import { MatTableModule } from '@angular/material/table';
   ],
 })
 export class AppDashboardComponent {
-  @ViewChild('chart') chart: ChartComponent = Object.create(null);
-
   constructor() {}
 }

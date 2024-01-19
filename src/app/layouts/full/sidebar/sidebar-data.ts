@@ -12,16 +12,16 @@ export const navItems: NavItem[] = [
   {
     displayName: 'characters',
     iconName: 'rosette',
-    route: '/ui-components/badge',
+    route: '/characters/list',
   },
   {
     displayName: 'selected',
     iconName: 'poker-chip',
-    route: '/ui-components/chips',
+    route: '/characters/selected',
   },
   {
     displayName: 'favorites',
     iconName: 'list',
-    route: '/ui-components/lists',
+    route: '/characters/favorites',
   },
 ];

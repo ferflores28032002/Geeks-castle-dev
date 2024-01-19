@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
+
 import { RouterModule, Routes } from '@angular/router';
+
 import { BlankComponent } from './layouts/blank/blank.component';
 import { FullComponent } from './layouts/full/full.component';
+import { AppSideLoginComponent } from './pages/authentication/login/login.component';
 
 const routes: Routes = [
   {
@@ -19,16 +22,11 @@ const routes: Routes = [
           import('./pages/pages.module').then((m) => m.PagesModule),
       },
       {
-        path: 'ui-components',
+        path: 'characters',
         loadChildren: () =>
-          import('./pages/ui-components/ui-components.module').then(
-            (m) => m.UicomponentsModule
+          import('./pages/characters/characters.module').then(
+            (m) => m.charactersModule
           ),
-      },
-      {
-        path: 'extra',
-        loadChildren: () =>
-          import('./pages/extra/extra.module').then((m) => m.ExtraModule),
       },
     ],
   },
@@ -44,6 +42,11 @@ const routes: Routes = [
           ),
       },
     ],
+  },
+  {
+    // Ruta de comodín para redirigir cualquier otra ruta al componente de login
+    path: '**',
+    component: AppSideLoginComponent,
   },
 ];
 

@@ -6,11 +6,10 @@ import { RemoveFromSelected } from 'src/app/store/actions/rickAndMorty.actions';
 import { CharacterState } from 'src/app/store/states/rickAndMorty.state';
 
 @Component({
-  selector: 'app-chips',
-  templateUrl: './chips.component.html',
-  styleUrls: ['./chips.component.scss'],
+  selector: 'app-charactersSelected',
+  templateUrl: './charactersSelected.component.html',
 })
-export class AppChipsComponent {
+export class AppcharactersSelectedComponent {
   @Select(CharacterState.selected) selected$!: Observable<Character[]>;
 
   constructor(private store: Store) {}

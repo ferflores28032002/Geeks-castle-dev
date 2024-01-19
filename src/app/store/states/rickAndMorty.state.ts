@@ -10,10 +10,10 @@ import { tap } from 'rxjs/operators';
 
 // Importaciones de modelos y servicios
 import { ApiRickAndMortyResponse } from 'src/app/models/rickAndMorty.model';
-import { AlertDialogComponent } from 'src/app/pages/ui-components/alert-dialog/alert-dialog.component';
 import { RickAndMortyService } from 'src/app/services/rickAndMorty.service';
 
 // Importaciones de acciones y modelo de estado
+import { AlertDialogComponent } from 'src/app/pages/characters/alert-dialog/alert-dialog.component';
 import {
   AddToFavorites,
   AddToSelected,

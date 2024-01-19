@@ -13,10 +13,10 @@ import {
 } from '../../../store/actions/rickAndMorty.actions';
 
 @Component({
-  selector: 'app-badge',
-  templateUrl: './badge.component.html',
+  selector: 'app-charactersList',
+  templateUrl: './charactersList.component.html',
 })
-export class AppBadgeComponent implements OnInit, OnDestroy {
+export class AppCharactersListComponent implements OnInit, OnDestroy {
   @Select(CharacterState.characters) characters$!: Observable<Character[]>;
   @Select(CharacterState.favorites) favorites$!: Observable<Character[]>;
   @Select(CharacterState.selected) selected$!: Observable<Character[]>;

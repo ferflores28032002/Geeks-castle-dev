@@ -5,11 +5,10 @@ import { Character } from 'src/app/models/rickAndMorty.model';
 import { CharacterState } from 'src/app/store/states/rickAndMorty.state';
 
 @Component({
-  selector: 'app-lists',
-  templateUrl: './lists.component.html',
-  styleUrls: ['./list.components.scss'],
+  selector: 'app-charactersFavorites',
+  templateUrl: './charactersFavorites.component.html',
 })
-export class AppListsComponent {
+export class AppCharactersFavoritesComponent {
   @Select(CharacterState.favorites) favorites$!: Observable<Character[]>;
 
   constructor(private store: Store) {}
