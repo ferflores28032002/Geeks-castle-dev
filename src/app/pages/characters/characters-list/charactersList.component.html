@@ -46,59 +46,53 @@
     </button>
   </ng-container>
 
-  <div
-    infinite-scroll
-    [infiniteScrollDistance]="0.5"
-    [infiniteScrollUpDistance]="2"
-    [infiniteScrollThrottle]="300"
-    (scrolled)="onScroll()"
+  <mat-card
+    class="cardWithShadow theme-card"
+    [class.selected]="isSelected(character.id)"
+    *ngFor="let character of characters$ | async"
+    (click)="selectCharacter(character.id)"
   >
-    <mat-card
-      class="cardWithShadow theme-card"
-      [class.selected]="isSelected(character.id)"
-      *ngFor="let character of characters$ | async"
-      (click)="selectCharacter(character.id)"
-    >
-      <mat-card-content>
-        <mat-card-header class="title-container">
-          <div>
-            <mat-icon
-              class="mat-icon-rtl-mirror"
-              (click)="toggleFavorite(character.id)"
+    <mat-card-content>
+      <mat-card-header class="title-container">
+        <div>
+          <mat-icon
+            class="mat-icon-rtl-mirror"
+            (click)="toggleFavorite(character.id)"
+          >
+            <span *ngIf="isFavorite(character.id)" class="favorite-icon"
+              >favorite</span
             >
-              <span *ngIf="isFavorite(character.id)" class="favorite-icon"
-                >favorite</span
-              >
-              <span *ngIf="!isFavorite(character.id)" class="not-favorite-icon"
-                >favorite_border</span
-              >
-            </mat-icon>
-          </div>
-        </mat-card-header>
+            <span *ngIf="!isFavorite(character.id)" class="not-favorite-icon"
+              >favorite_border</span
+            >
+          </mat-icon>
+        </div>
+      </mat-card-header>
 
-        <div class="info-character">
-          <img [src]="character.image" alt="{{ character.name }}" />
+      <div class="info-character">
+        <img [src]="character.image" alt="{{ character.name }}" />
 
-          <div class="box-character">
-            <p class="box-character-name">{{ character.name }}</p>
-            <div class="box-character-descriptions">
-              <div>
-                <span class="highlight">Status:</span> {{ character.status }}
-              </div>
-              <div>
-                <span class="highlight">Location:</span>
-                {{ character.location.name }}
-              </div>
-              <div>
-                <span class="highlight">Species:</span> {{ character.species }}
-              </div>
-              <div>
-                <span class="highlight">Gender:</span> {{ character.gender }}
-              </div>
+        <div class="box-character">
+          <p class="box-character-name">{{ character.name }}</p>
+          <div class="box-character-descriptions">
+            <div>
+              <span class="highlight">Status:</span> {{ character.status }}
+            </div>
+            <div>
+              <span class="highlight">Location:</span>
+              {{ character.location.name }}
+            </div>
+            <div>
+              <span class="highlight">Species:</span> {{ character.species }}
+            </div>
+            <div>
+              <span class="highlight">Gender:</span> {{ character.gender }}
             </div>
           </div>
         </div>
-      </mat-card-content>
-    </mat-card>
-  </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <button (click)="onNextPage()">Ver más</button>
 </ng-template>
